@@ -132,4 +132,4 @@ dmypy.json
 node_modules/
 
 # Media Image Exclusion
-media/*
+PWUBackend/media/*
