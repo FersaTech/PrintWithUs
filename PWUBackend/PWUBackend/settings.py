@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pwuDB',
     'rest_framework',
     'django_filters',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
