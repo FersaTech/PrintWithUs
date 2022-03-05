@@ -3,7 +3,10 @@ from .models import UserModel, Categories, Products, OrderModel
 
 # Register your models here.
 
-admin.site.register(UserModel)
+@admin.register(UserModel)
+class UserModelAdmin(admin.ModelAdmin):
+    list_display = ('c_id', 'c_name', 'c_email')
+
 admin.site.register(Categories)
 admin.site.register(Products)
 @admin.register(OrderModel)
