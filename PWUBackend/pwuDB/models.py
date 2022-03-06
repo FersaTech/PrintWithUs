@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+import json
 
 # Create your models here.
 class Categories(models.Model): # GET
@@ -7,7 +8,7 @@ class Categories(models.Model): # GET
     cat_name = models.CharField(verbose_name='Category Name', default=None, max_length=100)
     cat_desc = models.JSONField(verbose_name='Category Description (in JSON)')
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.cat_name
     
     class Meta:

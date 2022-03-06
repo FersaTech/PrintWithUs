@@ -6,9 +6,12 @@ from .serializers import UserModelSerializer, CategoriesSerializer, ProductsSeri
 # Create your views here.
 
 class UserModelDetailView(RetrieveUpdateDestroyAPIView):
-    pass
-    # queryset = UserModel.objects.all()
-    # serializer_class = UserModelSerializer
+    # pass
+    queryset = UserModel.objects.all()
+    serializer_class = UserModelSerializer
+    lookup_fields = ['c_id']
+    lookup_url_kwarg = 'c_id'
+    
 class UserModelRegistrationView(CreateAPIView):
     queryset = UserModel.objects.all()
     serializer_class = UserModelSerializer
