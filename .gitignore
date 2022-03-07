@@ -131,3 +131,5 @@ dmypy.json
 # Node Modules
 node_modules/
 
+# vscode settings excluded
+.vscode/
