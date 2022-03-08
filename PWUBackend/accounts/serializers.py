@@ -8,11 +8,27 @@ from .models import UserData
 
 
 class UserDataRegistrationSerializer(serializers.ModelSerializer):
+    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     class Meta:
         model = UserData
-        fields = ['username', 'password', 'email']
+        fields = ['username', 'password', 'password2', 'email', 'user_phone']
         extra_kwargs = {'password': {'write_only': True}}
 
+    def save(self):
+        if self.validated_data['password'] != self.validated_data['password2']:
+            raise ValidationError({'error': 'Passwords must match'})
+        
+        if ('email' not in self.validated_data and 'user_phone' not in self.validated_data) or (self.validated_data['email'] == "" and self.validated_data['user_phone'] == ""):
+            raise ValidationError({'error': 'Email or Phone is required'})
+        
+        user = UserData.objects.create(
+            username=self.validated_data['username'],
+            email=self.validated_data['email'],
+            user_phone=self.validated_data['user_phone'],
+            password=self.validated_data['password2']
+        )
+        user.save()
+        return user
 
 class UserDataLoginSerializer(serializers.ModelSerializer):
     class Meta:
