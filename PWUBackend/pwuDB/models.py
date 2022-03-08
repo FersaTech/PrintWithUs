@@ -27,13 +27,14 @@ class Products(models.Model):
 
 
 class Orders(models.Model):
-    id                   = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    ord_id               = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     customer             = models.ForeignKey(User, on_delete=models.CASCADE)
     product              = models.ForeignKey(Products, on_delete=models.CASCADE)
-    quantity             = models.IntegerField(default=0, blank=False, null=False)
-    price                = models.FloatField(default=0.0, blank=False, null=False)
-    date                 = models.DateTimeField(auto_now_add=True)
-    status               = models.CharField(max_length=50, blank=False, null=False, default='Pending')
+    ord_quantity         = models.IntegerField(default=0, blank=False, null=False)
+    ord_price            = models.FloatField(default=0.0, blank=False, null=False)
+    ord_date             = models.DateTimeField(auto_now_add=True)
+    ord_status           = models.CharField(max_length=50, blank=False, null=False, default='Pending')
+    ord_feedback         = models.TextField(blank=True, null=True)
     cancellation_status  = models.CharField(max_length=50, blank=False, null=False, default='No')
     user_gst_num         = models.CharField(max_length=100, blank=True, default='Not Provided')
     user_refund_cheque   = models.FileField(upload_to='OrderRefund/', blank=True)
