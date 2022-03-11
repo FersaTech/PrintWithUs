@@ -67,4 +67,4 @@ class UserMerchantLoginSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name','last_name', 'email', 'user_address', 'mobile', 'user_profile_pic', 'is_merchant']
+        fields = ['id', 'first_name','last_name', 'email', 'address', 'mobile', 'profile_picture', 'is_merchant']
