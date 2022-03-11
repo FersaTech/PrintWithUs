@@ -46,21 +46,21 @@ class UserLoginSerializer(serializers.Serializer):
         
 
 
-class UserMerchantLoginSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['mobile', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
+class UserMerchantLoginSerializer(serializers.Serializer):
+    mobile = serializers.CharField()
+    password = serializers.CharField()
 
     def save(self):
         try:
-            a = User.objects.get(mobile=self.validated_data['mobile'])
+            a = User.objects.filter(mobile=self.validated_data['mobile']).exists()
             if a:
-                passData = a.password
-                if passData == self.validated_data['password']:
-                    token, created= Token.objects.get_or_create(user=a)
-                    return {'token': token.key, 'user_id': a.user_id}
-                raise ValidationError({'error': 'Password Invalid'}) 
+                userData = User.objects.get(mobile=self.validated_data['mobile'])
+                passData = userData.check_password(self.validated_data['password'])
+                if passData:
+                    token, created= Token.objects.get_or_create(user=userData)
+                    return {'token': token.key, 'user_id': userData.id}
+                raise ValidationError({'error': 'Password Invalid!'}) 
+            raise ValidationError({'error':'Mobile Number does not exist!'})
         except User.DoesNotExist:
             raise ValidationError({"error":"Merchant Account or mobile Does Not Exist"})
 

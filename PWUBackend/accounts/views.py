@@ -37,9 +37,7 @@ def login_view(request):
         if serializer.is_valid():
             # print(serializer.validated_data)
             a = serializer.save()
-            print(a)
             responder = Response(a, status=200)
-            print(a)
             responder.set_cookie('token', a['token'])
             responder.set_cookie('user_id', a['user_id'])
             return responder

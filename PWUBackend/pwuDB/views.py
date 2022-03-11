@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
+from rest_framework.response import Response
 
 from pwuDB.models import Categories, Orders, Products
 from pwuDB.serializers import CategoriesSerializer, OrderListSerializer, OrderSerializer, ProductSerializer
@@ -14,6 +17,9 @@ class CategoryAPIView(generics.ListAPIView):
 class ProductsAPIView(generics.ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ['category']
+    search_fields = ['@name', '@description', '@category__name']
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Products.objects.all()
@@ -27,9 +33,19 @@ class OrderAddAPIView(generics.CreateAPIView):
     serializer_class = OrderSerializer
     # permission_classes = (IsAuthenticated,)
 
-class OrderListAPIView(generics.ListAPIView):
-    queryset = Orders.objects.all()
-    serializer_class = OrderListSerializer
-    permission_classes = (IsAuthenticated,)
-    filter_backends = (DjangoFilterBackend,)
-    filterset_fields = ('customer',)
+# class OrderListAPIView(generics.ListAPIView):
+#     queryset = Orders.objects.all()
+#     serializer_class = OrderListSerializer
+#     permission_classes = (IsAuthenticated,)
+#     filter_backends = (DjangoFilterBackend,)
+#     filterset_fields = ('customer',)
+
+class OrderListAPIView(APIView):
+
+    def post(self, request, id):
+        a = Orders.objects.filter(customer=id)
+        try:
+            serializer = OrderListSerializer(a, many=True)
+            return Response(serializer.data)
+        except:
+            return Response(serializer.errors)

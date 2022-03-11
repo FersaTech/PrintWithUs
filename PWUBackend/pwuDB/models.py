@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils.safestring import mark_safe
 
 User = get_user_model()
 
@@ -36,14 +37,20 @@ class Orders(models.Model):
     ord_date             = models.DateTimeField(auto_now_add=True)
     ord_status           = models.CharField(max_length=50, blank=False, null=False, default='Pending')
     ord_feedback         = models.TextField(blank=True, null=True)
+    ord_image            = models.FileField(upload_to='order/customised_images/', blank=True, null=True)
     cancellation_status  = models.CharField(max_length=50, blank=False, null=False, default='No')
     user_gst_num         = models.CharField(max_length=100, blank=True, default='Not Provided')
-    user_refund_cheque   = models.FileField(upload_to='OrderRefund/', blank=True)
+    user_refund_cheque   = models.FileField(upload_to='order/OrderRefund/', blank=True)
 
     def __str__(self):
         return self.customer.email
     
-    def save(self):
-        gst = (self.order_product.product_price*self.order_quantity) * 0.18
-        self.order_price = (self.order_product.product_price*self.order_quantity) + gst
+    def save(self, *args, **kwargs):
+        gst = (self.product.price*self.ord_quantity) * 0.18
+        self.ord_price = (self.product.price*self.ord_quantity) + gst
         super().save()
+
+    def order_photo(self):
+        return mark_safe('<img src="{}" width="100px" height="100px" />'.format(self.ord_image.url))
+    order_photo.short_description = 'Order Image'
+    order_photo.tags = True
