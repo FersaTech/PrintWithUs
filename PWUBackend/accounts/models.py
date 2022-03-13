@@ -71,6 +71,15 @@ class User(AbstractBaseUser):
 
 
 
+class CartDataModel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    data = models.JSONField(default=dict)
+
+    def __str__(self):
+        return self.user.email
+
+    class Meta:
+        verbose_name_plural = "Cart Data"
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

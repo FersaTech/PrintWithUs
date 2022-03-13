@@ -4,4 +4,10 @@ from .models import Products, Categories, Orders
 
 admin.site.register(Products)
 admin.site.register(Categories)
-admin.site.register(Orders)
+
+
+class OrdersAdmin(admin.ModelAdmin):
+    search_fields = ('id', 'customer')
+    list_display = ['customer', 'product', 'ord_price','cancellation_status']
+    list_filter = ['cancellation_status']
+admin.site.register(Orders, OrdersAdmin)

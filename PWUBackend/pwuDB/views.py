@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -20,13 +21,11 @@ class CategoryAPIView(generics.ListAPIView):
 
 # View for Prodcut Listing
 class ProductsAPIView(generics.ListAPIView):
-    model = Products
+    queryset = Products.objects.all()
     serializer_class = ProductSerializer
-
-    def get_queryset(self):
-        query = self.request.query_params.get('search', None)
-        queryset = Products.objects.annotate(search=SearchVector('name', 'description', 'category')).filter(search=query)
-        return queryset    
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filter_fields = ['category']
+    search_fields = ['@name', '@description', '@category__name']
 
 
 # View for Product Detail Listing
@@ -45,6 +44,22 @@ class OrderAddAPIView(generics.CreateAPIView):
 
 
 # View for displaying orders against the customer id
+# class OrderListAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     serializer_class = OrderListSerializer
+#     permission_classes = [IsAuthenticated]
+#     lookup_fields = ['customer']
+#     lookup_url_kwarg = 'customer'
+    
+#     def get_queryset(self):
+#         a = Orders.objects.filter(customer=self.kwargs['customer'])
+#         return a
+    #     # try:
+    #         # serializer = OrderListSerializer(a, many=True)
+    #         # return Response(serializer.data)
+    #     # except:
+    #         # return Response(serializer.errors)
+
+
 class OrderListAPIView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request, id):
@@ -54,4 +69,22 @@ class OrderListAPIView(APIView):
             return Response(serializer.data)
         except:
             return Response(serializer.errors)
+    
+    def put(self, request, id):
+        a = Orders.objects.filter(customer=id)
 
+        for items in request.data.keys():
+            if 'cancellation_status' in items:
+                a.update(cancellation_status=request.data['cancellation_status'])
+                return Response({'message':'updated the details'}, status=200)
+            
+            if 'ord_feedback' in items:
+                a.update(ord_feedback=request.data['ord_feedback'])
+                return Response({'message':'updated the details'}, status=200)
+            
+            if 'ord_status' in items:
+                a.update(ord_status=request.data['ord_status'])
+                return Response({'message':'updated the details'}, status=200)
+                
+            else:
+                return Response({'message':'{} does not exist!'.format(items)}, status=400)

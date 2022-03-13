@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
 
-from .models import User
+from .models import CartDataModel, User
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -60,7 +60,7 @@ class UserMerchantLoginSerializer(serializers.Serializer):
                     token, created= Token.objects.get_or_create(user=userData)
                     return {'token': token.key, 'user_id': userData.id}
                 raise ValidationError({'error': 'Password Invalid!'}) 
-            raise ValidationError({'error':'Mobile Number does not exist!'})
+            raise ValidationError({'error':'Merchant does not exist!'})
         except User.DoesNotExist:
             raise ValidationError({"error":"Merchant Account or mobile Does Not Exist"})
 
@@ -68,3 +68,16 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'first_name','last_name', 'email', 'address', 'mobile', 'profile_picture', 'is_merchant']
+
+
+# class UserforCartData(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id']
+
+
+# class CartDataSerializer(serializers.ModelSerializer):
+#     user = UserforCartData()
+#     class Meta:
+#         model = CartDataModel
+#         fields = ['user', 'data']

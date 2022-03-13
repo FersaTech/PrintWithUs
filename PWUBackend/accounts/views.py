@@ -6,8 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 
-from .models import User
-from .serializers import UserRegistrationSerializer, UserSerializer, UserLoginSerializer, UserMerchantLoginSerializer
+from .models import User, CartDataModel
+from .serializers import UserRegistrationSerializer, UserSerializer, UserLoginSerializer, UserMerchantLoginSerializer #, CartDataSerializer
 
 # Create your views here.
 
@@ -133,3 +133,30 @@ def user_view(request, uID):
             return a
         return Response(status=204)
 
+
+# class CartDataAPIView(generics.ListCreateAPIView):
+#     queryset = CartDataModel.objects.all()
+#     serializer_class = CartDataSerializer
+#     permission_classes = [IsAuthenticated]
+
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)
+
+
+# class CartDataRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = CartDataModel.objects.all()
+#     serializer_class = CartDataSerializer
+#     lookup_fields = ['user']
+#     lookup_url_kwarg = 'user'
+#     permission_classes = [IsAuthenticated]
+
+#     def get_object(self):
+#         a = CartDataModel.objects.filter(user=self.request.user)
+#         serializer = CartDataSerializer(a, many=True)
+#         return serializer.data
+    
+#     def perform_update(self, serializer):
+#         serializer.save(user=self.request.user)
+    
+#     def perform_destroy(self, instance):
+#         instance.delete()
