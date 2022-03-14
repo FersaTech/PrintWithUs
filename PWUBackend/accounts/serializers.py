@@ -76,8 +76,8 @@ class UserSerializer(serializers.ModelSerializer):
 #         fields = ['id']
 
 
-# class CartDataSerializer(serializers.ModelSerializer):
-#     user = UserforCartData()
-#     class Meta:
-#         model = CartDataModel
-#         fields = ['user', 'data']
+class CartDataSerializer(serializers.ModelSerializer):
+    # user = UserforCartData()
+    class Meta:
+        model = CartDataModel
+        fields = ['user', 'data']

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 
 from .models import User, CartDataModel
-from .serializers import UserRegistrationSerializer, UserSerializer, UserLoginSerializer, UserMerchantLoginSerializer #, CartDataSerializer
+from .serializers import CartDataSerializer, UserRegistrationSerializer, UserSerializer, UserLoginSerializer, UserMerchantLoginSerializer #, CartDataSerializer
 
 # Create your views here.
 
@@ -131,6 +131,37 @@ def user_view(request, uID):
             a.delete_cookie('user_id')
             a.delete_cookie('token')
             return a
+        return Response(status=204)
+
+
+@api_view(['GET', 'POST', 'PUT', 'PATCH','DELETE'])
+@permission_classes([IsAuthenticated])
+def cart_view(request, uID):
+
+    if request.method == 'GET':
+        cart = CartDataModel.objects.get(user_id=uID)
+        serializer = CartDataSerializer(cart)
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+        serializer = CartDataSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        else:
+            return Response(serializer.errors, status=400)
+    
+    if request.method == 'PUT':
+        cart = CartDataModel.objects.get(user_id=uID)
+        serializer = CartDataSerializer(cart, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=400)
+    
+    if request.method == 'DELETE':
+        cart = CartDataModel.objects.get(user_id=uID).delete()
         return Response(status=204)
 
 
