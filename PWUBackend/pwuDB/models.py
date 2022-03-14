@@ -17,7 +17,9 @@ class Categories(models.Model):
 
 class Products(models.Model):
     id                  = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    image               = models.FileField(upload_to='product/product_images/', blank=False, null=False)
+    image               = models.FileField(upload_to='product/product_images/', blank=False, null=False, default="None")
+    image1              = models.FileField(upload_to='product/product_images/', blank=True, null=True)
+    image2              = models.FileField(upload_to='product/product_images/', blank=True, null=True)
     name                = models.CharField(max_length=50, blank=False, null=False)
     description         = models.TextField(blank=False, null=False)
     category            = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -40,6 +42,7 @@ class Orders(models.Model):
     ord_image            = models.FileField(upload_to='order/customised_images/', blank=True, null=True)
     cancellation_status  = models.CharField(max_length=50, blank=False, null=False, default='No')
     cancellation_date    = models.DateTimeField(blank=True, null=True)
+    cancellation_reason  = models.TextField(blank=True, default="None")
     user_gst_num         = models.CharField(max_length=100, blank=True, default='Not Provided')
     user_refund_cheque   = models.FileField(upload_to='order/OrderRefund/', blank=True)
 
