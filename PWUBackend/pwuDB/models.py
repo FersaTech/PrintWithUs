@@ -39,6 +39,7 @@ class Orders(models.Model):
     ord_feedback         = models.TextField(blank=True, null=True)
     ord_image            = models.FileField(upload_to='order/customised_images/', blank=True, null=True)
     cancellation_status  = models.CharField(max_length=50, blank=False, null=False, default='No')
+    cancellation_date    = models.DateTimeField(blank=True, null=True)
     user_gst_num         = models.CharField(max_length=100, blank=True, default='Not Provided')
     user_refund_cheque   = models.FileField(upload_to='order/OrderRefund/', blank=True)
 
@@ -49,8 +50,3 @@ class Orders(models.Model):
         gst = (self.product.price*self.ord_quantity) * 0.18
         self.ord_price = (self.product.price*self.ord_quantity) + gst
         super().save()
-
-    def order_photo(self):
-        return mark_safe('<img src="{}" width="100px" height="100px" />'.format(self.ord_image.url))
-    order_photo.short_description = 'Order Image'
-    order_photo.tags = True

@@ -86,5 +86,17 @@ class OrderListAPIView(APIView):
                 a.update(ord_status=request.data['ord_status'])
                 return Response({'message':'updated the details'}, status=200)
                 
+            if 'user_gst_num' in items:
+                a.update(user_gst_num=request.data['user_gst_num'])
+                return Response({'message':'updated the details'}, status=200)
+
+            if 'user_refund_cheque' in items:
+                a.update(user_refund_cheque=request.data['user_refund_cheque'])
+                return Response({'message':'updated the details'}, status=200)
+            
+            if 'cancellation_date' in items:
+                a.update(cancellation_date=request.data['cancellation_date'])
+                return Response({'message':'updated the details'}, status=200)
+
             else:
                 return Response({'message':'{} does not exist!'.format(items)}, status=400)
