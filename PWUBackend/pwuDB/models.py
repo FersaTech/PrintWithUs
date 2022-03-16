@@ -14,6 +14,8 @@ class Categories(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Categories"
 
 class Products(models.Model):
     id                  = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -28,6 +30,9 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "Products"
 
 
 class Orders(models.Model):
@@ -53,3 +58,6 @@ class Orders(models.Model):
         gst = (self.product.price*self.ord_quantity) * 0.18
         self.ord_price = (self.product.price*self.ord_quantity) + gst
         super().save()
+    
+    class Meta:
+        verbose_name_plural = "Orders"

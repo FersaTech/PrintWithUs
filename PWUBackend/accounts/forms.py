@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm, UserChangeForm
 from django.forms import ValidationError
-from .models import User
+from .models import User, CartDataModel
 
 class UserAdminCreationForm(UserCreationForm):
     class Meta:
@@ -24,6 +24,7 @@ class UserAdminCreationForm(UserCreationForm):
         user.set_password(self.clean_password2())
         if commit:
             user.save()
+            CartDataModel.objects.create(user=user, data={"null":"null"})
         return user
 
 class UserAdminChangeForm(UserChangeForm):

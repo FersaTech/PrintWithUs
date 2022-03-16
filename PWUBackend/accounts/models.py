@@ -25,6 +25,7 @@ class User(AbstractBaseUser):
     mobile = models.CharField(max_length=50, blank=True)
     address= models.CharField(max_length=100, blank=True)
     profile_picture = models.FileField(upload_to="accountStorage/profile_pictures/", blank=True)
+    is_merchant = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
@@ -81,7 +82,9 @@ class CartDataModel(models.Model):
     class Meta:
         verbose_name_plural = "Cart Data"
 
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+

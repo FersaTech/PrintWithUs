@@ -26,13 +26,13 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductSerializerForOrder(serializers.ModelSerializer):
     class Meta:
         model = Products
-        fields = "__all__"
-        read_only_fields = ['id']
+        fields = ['id']
+        # read_only_fields = ['id']
 
 
 class OrderSerializer(serializers.ModelSerializer):
     # customer = serializers.ReadOnlyField(source='customer.user_id')
-    product = ProductSerializerForOrder()
+    # product = ProductSerializerForOrder()
     class Meta:
         model = Orders
         fields = ['ord_id', 'customer', 'product', 'ord_quantity', 'ord_price', 'ord_feedback']

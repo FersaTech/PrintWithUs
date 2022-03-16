@@ -93,20 +93,12 @@ def merchant_login_view(request):
 def user_view(request, uID):
     
     if request.method == 'GET':
-        user = User.objects.get(user_id=uID)
+        user = User.objects.get(id=uID)
         serializer = UserSerializer(user)
         return Response(serializer.data)
 
-    elif request.method == 'POST':
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        else:
-            return Response(serializer.errors, status=400)
-
     elif request.method == 'PUT':
-        user = User.objects.get(user_id=uID)
+        user = User.objects.get(id=uID)
         serializer = UserSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -115,7 +107,7 @@ def user_view(request, uID):
             return Response(serializer.errors, status=400)
 
     elif request.method == 'PATCH':
-        user = User.objects.get(user_id=uID)
+        user = User.objects.get(id=uID)
         serializer = UserSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
@@ -124,7 +116,7 @@ def user_view(request, uID):
             return Response(serializer.errors, status=400)
 
     elif request.method == 'DELETE':
-        user = User.objects.get(user_id=uID)
+        user = User.objects.get(id=uID)
         user.delete()
         if 'user_id' in request.COOKIES and 'token' in request.COOKIES:
             a = Response({'message':'Account Closed Successfully!'}, status=204)
@@ -139,7 +131,7 @@ def user_view(request, uID):
 def cart_view(request, uID):
 
     if request.method == 'GET':
-        cart = CartDataModel.objects.get(user_id=uID)
+        cart = CartDataModel.objects.get(user__id=uID)
         serializer = CartDataSerializer(cart)
         return Response(serializer.data)
 
@@ -152,7 +144,7 @@ def cart_view(request, uID):
             return Response(serializer.errors, status=400)
     
     if request.method == 'PUT':
-        cart = CartDataModel.objects.get(user_id=uID)
+        cart = CartDataModel.objects.get(user__id=uID)
         serializer = CartDataSerializer(cart, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -161,7 +153,7 @@ def cart_view(request, uID):
             return Response(serializer.errors, status=400)
     
     if request.method == 'DELETE':
-        cart = CartDataModel.objects.get(user_id=uID).delete()
+        cart = CartDataModel.objects.get(user__id=uID).delete()
         return Response(status=204)
 
 

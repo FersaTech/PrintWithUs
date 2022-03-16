@@ -26,6 +26,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         )
         user.set_password(self.validated_data['password2'])
         user.save()
+        CartDataModel.objects.create(user=user)
         return user
 
 class UserLoginSerializer(serializers.Serializer):

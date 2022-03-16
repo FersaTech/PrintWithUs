@@ -10,6 +10,6 @@ admin.site.register(Categories)
 
 class OrdersAdmin(admin.ModelAdmin):
     search_fields = ('id', 'customer')
-    list_display = ['customer', 'product', 'ord_price','cancellation_status']
+    list_display = ['customer', 'product', 'ord_price','cancellation_status', 'ord_date']
     list_filter = ['cancellation_status']
 admin.site.register(Orders, OrdersAdmin)
