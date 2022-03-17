@@ -61,3 +61,15 @@ class Orders(models.Model):
     
     class Meta:
         verbose_name_plural = "Orders"
+
+
+class Coupon(models.Model):
+    id = models.UUIDField(verbose_name="Coupon ID", primary_key=True, editable=False, default=uuid.uuid4)
+    name = models.CharField(verbose_name="Coupon Name", max_length=40)
+    discount = models.FloatField(verbose_name="Discount Percent", max_length=40, default=0)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name_plural = "Coupons"

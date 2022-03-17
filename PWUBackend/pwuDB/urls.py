@@ -1,6 +1,6 @@
 from django.urls import path
 
-from pwuDB.views import CategoryAPIView, OrderAddAPIView, OrderListAPIView, OrderUpdateAPIView, ProductDetailAPIView, ProductsAPIView
+from pwuDB.views import CategoryAPIView, CouponRetrieveAPIView, OrderAddAPIView, OrderListAPIView, OrderUpdateAPIView, ProductDetailAPIView, ProductsAPIView
 
 urlpatterns = [
     path('', CategoryAPIView.as_view(), name='categories'),
@@ -10,4 +10,5 @@ urlpatterns = [
     # path('orders/list/<customer>/', OrderListAPIView.as_view(), name='order-list'),
     path('orders/list/', OrderListAPIView.as_view(), name='order-list'),
     path('orders/list/<ord_id>/', OrderUpdateAPIView.as_view(), name='order-list'),
+    path('coupon/<cpn_id>/', CouponRetrieveAPIView.as_view(), name="coupon-list"),
 ]

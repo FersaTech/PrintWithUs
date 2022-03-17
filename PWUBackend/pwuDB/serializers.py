@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from pwuDB.models import Categories, Orders, Products
+from pwuDB.models import Categories, Coupon, Orders, Products
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
@@ -43,3 +43,9 @@ class OrderListSerializer(serializers.ModelSerializer):
         model = Orders
         fields = "__all__"
         # fields = ('ord_id', 'customer', 'product', 'ord_quantity', 'ord_price', 'ord_status', 'ord_image', 'ord_feedback', 'ca')
+
+
+class CouponSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Coupon
+        fields = "__all__"

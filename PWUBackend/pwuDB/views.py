@@ -9,9 +9,9 @@ from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.postgres.search import SearchVector
 
-from pwuDB.models import Categories, Orders, Products
+from pwuDB.models import Categories, Coupon, Orders, Products
 from accounts.models import User
-from pwuDB.serializers import CategoriesSerializer, OrderListSerializer, OrderSerializer, ProductSerializer
+from pwuDB.serializers import CategoriesSerializer, CouponSerializer, OrderListSerializer, OrderSerializer, ProductSerializer
 
 # Create your views here.
 
@@ -62,3 +62,10 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
     lookup_fields = 'ord_id'
     lookup_url_kwarg = 'ord_id'
+
+
+class CouponRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = Coupon.objects.all()
+    serializer_class = CouponSerializer
+    lookup_fields = "id"
+    lookup_url_kwarg = "cpn_id"
