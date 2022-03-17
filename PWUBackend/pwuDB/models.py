@@ -64,8 +64,7 @@ class Orders(models.Model):
 
 
 class Coupon(models.Model):
-    id = models.UUIDField(verbose_name="Coupon ID", primary_key=True, editable=False, default=uuid.uuid4)
-    name = models.CharField(verbose_name="Coupon Name", max_length=40)
+    name = models.CharField(verbose_name="Coupon Name", max_length=40, primary_key=True, unique=True)
     discount = models.FloatField(verbose_name="Discount Percent", max_length=40, default=0)
 
     def __str__(self):
