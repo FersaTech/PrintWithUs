@@ -67,5 +67,5 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
 class CouponRetrieveAPIView(generics.RetrieveAPIView):
     queryset = Coupon.objects.all()
     serializer_class = CouponSerializer
-    lookup_fields = "id"
+    lookup_fields = "name"
     lookup_url_kwarg = "cpn_id"

@@ -1,7 +1,10 @@
 import uuid
+from django.conf import settings
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils.safestring import mark_safe
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.core.mail import send_mail
 
 User = get_user_model()
 
@@ -72,3 +75,11 @@ class Coupon(models.Model):
     
     class Meta:
         verbose_name_plural = "Coupons"
+
+
+@receiver(post_save, sender=Orders)
+def send_an_email(sender, created, **kwargs):
+    if created:
+        orderID = kwargs['instance']
+        msg =f"Your order for {orderID.product.name} has been placed successfully!\nYour Order Details are ~ \nOrder ID is → {orderID.ord_id}\nProduct Name → {orderID.product.name}\nCategory → {orderID.product.category.name}\nOrder Price(including GST) → {orderID.ord_price}\nOrder Date → {orderID.ord_date}\nOrder Status → {orderID.ord_status}"
+        send_mail(subject='Order Placed Successfully!', message=msg, from_email='dehimangshu2020@gmail.com', recipient_list=[orderID.customer.email], fail_silently=False)
