@@ -34,7 +34,6 @@ class UserLoginSerializer(serializers.Serializer):
     password = serializers.CharField(style={'input_type': 'password'})
     
     def save(self, *args, **kwargs):
-        try:
             a = User.objects.filter(email=self.validated_data['email']).exists()
             if a:
                 passData = User.objects.get(email=self.validated_data['email']).check_password(self.validated_data['password'])
@@ -42,9 +41,7 @@ class UserLoginSerializer(serializers.Serializer):
                     token, created = Token.objects.get_or_create(user=User.objects.get(email=self.validated_data['email']))
                     return {'token': token.key, 'user_id': User.objects.get(email=self.validated_data['email']).id}
                 raise ValidationError({'error': 'Password Invalid'}) 
-        except User.DoesNotExist:
-            raise ValidationError({"error":"Account or Email Does Not Exist"})
-        
+            raise ValidationError({"error":"Account or Email does not exist!"})
 
 
 class UserMerchantLoginSerializer(serializers.Serializer):
