@@ -24,8 +24,8 @@ export const ImageSilder: React.FC<{ slides: {}[] }> = (props) => {
   }
 
   return (
-    <section className={`${classes.slider} mb-10`}>
-      <FaArrowAltCircleLeft className={classes.leftArrow} onClick={prevSlide} />
+    <section className={`${classes.slider} mb-10 z-0`}>
+      <FaArrowAltCircleLeft className={`${classes.leftArrow} `} onClick={prevSlide} />
       <FaArrowAltCircleRight
         className={classes.rightArrow}
         onClick={nextSlide}
@@ -44,7 +44,7 @@ export const ImageSilder: React.FC<{ slides: {}[] }> = (props) => {
               <img
                 src={slide.CarousalImage}
                 alt="Carousal"
-                className={classes.image}
+                className={`${classes.image} flex w-screen items-center justify-center h-96 `}
               />
             )}
           </div>
