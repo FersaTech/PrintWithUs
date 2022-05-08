@@ -1,9 +1,10 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/_404NotFoundStyle.module.css";
 
 const _404NotFound = () => {
   return (
-    <div>
+    <React.Fragment>
       <div className="flex items-center justify-center w-screen h-screen ">
         <div className="px-4 lg:py-12">
           <div className="lg:flex relative">
@@ -35,7 +36,7 @@ const _404NotFound = () => {
           </div>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
