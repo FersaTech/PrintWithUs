@@ -1,0 +1,18 @@
+.text-9xl {
+    font-size: 14rem;
+}
+
+@media(max-width: 645px) {
+    .text-9xl {
+        font-size: 5.75rem;
+    }
+
+
+    .text-2xl {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+
+    
+}
+
