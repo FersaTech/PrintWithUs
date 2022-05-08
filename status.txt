@@ -1,7 +1,0 @@
-Status:
-
-> Model Integration Done.
-> Models Registered to the Admin Site.
-> Views to be completed by 30-50% by today itself.
-> Admin Site username and password is 'root' in both the cases respectively.
-> Added Database relation image in the project.
