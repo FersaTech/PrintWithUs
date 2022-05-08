@@ -1,5 +1,4 @@
-release: cd PWUVCard/
 release: python manage.py makemigrations --no-input
 release: python manage.py migrate --no-input
 
-web: gunicorn PWUVCard/PWUVCard.wsgi
+web: gunicorn PWUVCard.wsgi
