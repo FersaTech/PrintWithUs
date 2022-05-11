@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import AllProducts from "./Pages/AllProductsPage";
+import AllProductsPage from "./Pages/AllProductsPage";
 import HomePage from "./Pages/HomePage";
 import _404NotFound from "./Pages/_404NotFound";
 
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<AllProducts />} />
+        <Route path="/products" element={<AllProductsPage />} />
         <Route path="*" element={<_404NotFound />} />
       </Routes>
     </div>
