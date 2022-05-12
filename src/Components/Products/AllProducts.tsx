@@ -2,11 +2,11 @@ import React from "react";
 import { ProductsArray } from "../../models/Product/ProductModel";
 import { Product } from "./Product";
 
-export const AllProducts: React.FC<{ products: ProductsArray[] }> = (props) => {
+export const AllProducts = (props: any) => {
   return (
       <>
       
-      {props.products?.map((product) => {
+      {props.products?.map((product: any) => {
         return (
           <Product
             name={product.name}

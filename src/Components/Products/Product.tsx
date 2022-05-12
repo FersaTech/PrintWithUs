@@ -1,5 +1,4 @@
 import React from "react";
-import { ProductsArray } from "../../models/Product/ProductModel";
 import { Card } from "./UI/Card";
 
 export const Product = (props: any) => {
