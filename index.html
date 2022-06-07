@@ -12,7 +12,8 @@
 <body>
   <div class="h-8 mx-auto p-8 text-center">
     <nav
-      class="sticky bg-white shadow-lg md:fixed w-screen h-20  backdrop-filter backdrop-blur-2xl bg-opacity-60 border border-gray-200 top-0 z-40 flex flex-none  py-3 px-3 mx-auto  border-b " style="left: 0px; bottom: 472px; right: 0px;">
+      class="sticky bg-white shadow-lg md:fixed w-screen h-20  backdrop-filter backdrop-blur-2xl bg-opacity-60 border border-gray-200 top-0 z-40 flex flex-none  py-3 px-3 mx-auto  border-b"
+      style="left: 0px; bottom: 472px; right: 0px;">
       <div class=" max-w-6xl flex items-center justify-between  px-3 mx-auto max-w-8xl lg:px-4">
         <div class="flex justify-center">
           <div class="flex space-x-7 2xl:space-x-72 2xl:ml-4 md:grid md:grid-flow-col md:grid-cols-5">
@@ -32,11 +33,32 @@
           </div>
           <section class="flex space-x-2 ">
             <a class="font-semibold w-10 h-10 mt-10" href="#">
-              
+
               <img src="assets/icons/search-svgrepo-com.svg" alt="Search" class="w-6 h-6" />
             </a>
             <a href="">
               <img src="assets/icons/cart-4-svgrepo-com.svg" alt="Cart" class="w-8 h-8 mt-9" />
+                <div class="cart-modal-overlay fixed w-1/3 h-full bg-white z-40 translate-x-0 ease-in-outout">
+                  <div class="cart-modal h-screen w-[50%] float-left overflow-scroll overflow-x-hidden">
+                    <i id="close-btn" class="font-mono float-left my-2 mx-8 text-black cursor-pointer "></i>
+                      <h1 class="cart-is-empty text-black text-center font-mono mb-4 hidden ">Cart is empty</h1>
+                    
+                      <div class="product-rows mt-12 w-[95%] mx-auto">
+                      </div>
+                      <div class="total text-center mx-8">
+                        <h1 class="cart-total text-black">TOTAL</h1>
+                          <span class="total-price text-xl text-black block">$0</span>
+                            <button class="purchase-btn text-xs font-bold bg-purple-600 text-white px-4 py-1 rounded-xl outline-none border-none cursor-pointer mx-[2em] ">PURCHASE</button>
+                      </div>
+                    </div>
+              </div>
+                    
+              <!--   end of cart modal -->
+                <div class="cart-btn  ">
+                  <i id="cart" class="fas fa-shopping-cart relative text-2xl cursor-pointer ml-4 mr-16"></i>
+                    <span class ="cart-quantity">0</span>
+                </div>
+    
             </a>
           </section>
         </div>
@@ -342,4 +364,5 @@
     </div>
   </div>
 </body>
+
 </html>
