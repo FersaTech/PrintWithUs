@@ -38,14 +38,14 @@
             </a>
             <a href="">
               <img src="assets/icons/cart-4-svgrepo-com.svg" alt="Cart" class="w-8 h-8 mt-9" />
-                <div class="cart-modal-overlay fixed w-1/3 h-full bg-white z-40 translate-x-0 ease-in-outout">
+                <div class="cart-modal-overlay fixed w-1/3 h-full bg-white rounded-l-lg z-40 translate-x-0 ease-in-outout">
                   <div class="cart-modal h-screen w-[50%] float-left overflow-scroll overflow-x-hidden">
                     <i id="close-btn" class="font-mono float-left my-2 mx-8 text-black cursor-pointer "></i>
                       <h1 class="cart-is-empty text-black text-center font-mono mb-4 hidden ">Cart is empty</h1>
                     
                       <div class="product-rows mt-12 w-[95%] mx-auto">
                       </div>
-                      <div class="total text-center mx-8">
+                      <div class="total text-center ml-8">
                         <h1 class="cart-total text-black">TOTAL</h1>
                           <span class="total-price text-xl text-black block">$0</span>
                             <button class="purchase-btn text-xs font-bold bg-purple-600 text-white px-4 py-1 rounded-xl outline-none border-none cursor-pointer mx-[2em] ">PURCHASE</button>
@@ -54,9 +54,9 @@
               </div>
                     
               <!--   end of cart modal -->
-                <div class="cart-btn  ">
+                <div class="cart-btn relative flex justify-end ">
                   <i id="cart" class="fas fa-shopping-cart relative text-2xl cursor-pointer ml-4 mr-16"></i>
-                    <span class ="cart-quantity">0</span>
+                    <span class ="cart-quantity bg-slate-500 text-black px-[.2em] py-[.3em] mx-[.8em] my-[7.5]em border-2 border-blue-600 font-bold">0</span>
                 </div>
     
             </a>
@@ -73,7 +73,40 @@
         Us</a>
     </nav>
 
-    
+    <!-- <nav class=" relattive element md:flex md:flex-row lg:flex lg:flex-row justify-between items-center ">
+            <div>
+                <img class="h-[6rem] w-[10rem] mx-auto" src="/assets/print with us.svg" alt="Logo">
+            </div>
+            <div class="flex justify-end space-x-2 ">
+                <div class=" relative w-max mx-auto">
+                    <input type="search"
+                        class="relative peer z-10 bg-transparent w-8 h-8 rounded-full border outline-none cursor-pointer pl-6 pr-2 focus:w-full focus:border-purple-700 focus:cursor-text focus:pl-14 focus:pr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-y-0 stroke-slate-600  my-auto mx-1  h-6 w-6  px-0.5
+                   border-r border-transparent peer-focus:border-purple-700 peer-focus:stroke-purple-700 " fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <button type="button" class="ml-auto text-slate-500 w-8 h-8   flex items-center justify-end ">
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </a>
+                </button>
+            </div>
+            <div class="mt-2">
+                    <a class="font-semibold p-2 hover:cursor-pointer hover:text-green-400 hover:border-green-400 hover:border-b-4 hover:transition" href="#">Home</a>
+                <a class=" font-semibold p-2 hover:cursor-pointer hover:text-green-400 hover:border-green-400 hover:border-b-4 hover:transition" href="#">All Product</a>
+                <a class=" font-semibold p-2n hover:cursor-pointer hover:text-green-400 hover:border-green-400 hover:border-b-4 hover:transition" href="#">New Arrivals</a>
+                <a class=" font-semibold p-[-0.25rem] " href="#">
+                    <img src="/assets/user-account-person-avatar-svgrepo-com.svg" class="h-6 w-6 inline-block" alt="">
+                </a>
+            </div>
+        </nav> -->
 
     <section class="Carousel md:flex md:flex-row mt-20 items-center justify-center">
       <div class="md:w-2/5 flex flex-col justify-center">
@@ -253,7 +286,13 @@
         </div>
       </div>
     </div>
-    
+    <!-- <div class="-my-96 ">
+            <div class="relative w-full h-[400px] bg-purple-700 box-border p-[20.8rem]">
+                <div
+                    class="absolute w-full h-full bg-inherit right-0 top-0 bottom-[ 438px] left-0 z-10 origin-bottom-right skew-y-6">
+                </div>
+            </div>
+        </div> -->
     <div>
       <!--Footer-->
       <footer class="bg-slate-900 py-24 pb-0 border-t rounded-tl-[2.5rem] rounded-br-[2.5rem]">
