@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Signin v2</title>
+    <!-- component -->
+    <style>
+        /*remove custom style*/
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .circles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+
+        .circles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .circles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .circles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .circles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .circles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .circles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+
+        .circles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .circles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .circles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+
+        @keyframes animate {
+
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+
+        }
+
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+            color:
+                #ffffff;
+        }
+
+        .hover-underline-animation:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color:
+                #e5df2d;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mx-auto text-center">
+
+        <nav
+          class="sticky w-full flex flex-wrap items-center justify-between top-0 text-white text-base navbar navbar-expand-lg bg-fixed z-20">
+          <div class="relative space-x-4 bg-purple-700 md:rounded-br-3xl lg:rounded-br-3xl px-8 ">
+            <a href="/index.html">Home</a>
+            <a href="">New Arrival</a>
+            <a href="">Recommended</a>
+            <a href="">Most Popular</a>
+          </div>
+          <div class=" bg-purple-700 md:rounded-bl-3xl lg:rounded-bl-3xl space-x-4 px-8 flex items-center relative">
+            <a href="">About Us</a>
+            <a href="">Contact Us</a>
+            <a href="" class="text-gray-100 hover:text-white focus:text-gray-200 mr-4">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-cart" class="w-4" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="currentColor"
+                  d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z">
+                </path>
+              </svg>
+              <span class="text-white bg-red-700 absolute rounded-full text-xs -mt-2.5 ml-2 py-0 px-1.5">1</span></a>
+            <a href="">Login/Sign up</a>
+          </div>
+        </nav>
+    
+        <div class="relative min-h-screen flex ">
+            <div
+                class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
+                <div class="sm:w-1/2 xl:w-3/5 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative"
+                    style="background-image: url(./assets/Img/bg\ 3.jpg);">
+                    <div class="absolute bg-gradient-to-b from-purple-700 to-indigo-500 opacity-75 inset-0 z-0"></div>
+                    <div class="w-full  max-w-md z-10">
+                        <div class="sm:text-4xl xl:text-5xl font-bold leading-tight hover-underline-animation  mb-6">
+                            Print-With-Us</div>
+                        <div class="sm:text-sm xl:text-md text-gray-200 font-normal">We print
+                            <span
+                                class="text-amber-400 font-semibold  hover:uppercase hover:text-base hover:text-amber-500 cursor-pointer -translate-x-96 ">
+                                Quality
+                            </span>at
+                            <span class="text-cyan-400 hover:uppercase hover:text-base hover:text-cyan-300 font-semibold">
+                                Reasonable
+                            </span>price
+                        </div>
+                    </div>
+                    <!---remove custom style-->
+                    <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                
+                <div
+                    class="md:flex md:items-center md:justify-center md:w-full sm:w-auto md:h-full w-2/5 xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white border-t-2 border-purple-700">
+                    <div class="max-w-md w-full space-y-8">
+                        <div class="text-center">
+                            <div class="text-center">
+                                <a href="" class="inline-block max-w-[160px] mx-auto">
+                                  <img src="assets/print with us.svg" alt="logo" />
+                                </a>
+                              </div>
+                            <p class=" text-sm text-gray-500">Please sign in to your account</p>
+                        </div>
+                        <div class="flex flex-row justify-center items-center space-x-3">
+                            <a href="" target="_blank"
+                                class="w-11 h-11 items-center justify-center inline-flex rounded-2xl font-bold text-lg   bg-blue-900 hover:shadow-lg cursor-pointer transition ease-in duration-300"><img
+                                    class="w-8 h-8" src="./assets/icons/icons8-facebook-f-48.svg"></a>
+                            <a href="" target="_blank"
+                                class="w-11 h-11 items-center justify-center inline-flex rounded-2xl font-bold text-lg  text-white bg-blue-400 hover:shadow-lg cursor-pointer transition ease-in duration-300"><img
+                                    class="w-8 h-8" src="/assets/icons/icons8-twitter.svg"></a>
+                            <a href="" target="_blank"
+                                class="w-11 h-11 items-center justify-center inline-flex rounded-2xl font-bold text-lg  text-white bg-blue-500 hover:shadow-lg cursor-pointer transition ease-in duration-300"><img
+                                    src="./assets/icons/Linkedin-Icon-white.png" class="w-8 h-8"></a>
+                        </div>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="h-px w-16 bg-gray-200"></span>
+                            <span class="text-gray-300 font-normal">or continue with</span>
+                            <span class="h-px w-16 bg-gray-200"></span>
+                        </div>
+                        <form class="mt-8 space-y-6" action="#" method="POST">
+                            <input type="hidden" name="remember" value="true">
+                            <div class="relative">
+                                <div class="absolute right-3 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
+                                <input
+                                    class=" w-full text-base px-4 py-2 border-2 focus:border-double border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500"
+                                    type="" placeholder="mail@gmail.com">
+                            </div>
+                            <div class="mt-8 content-center">
+                                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">
+                                    Password
+                                </label>
+                                <input
+                                    class="w-full content-center text-base px-4 py-2 border-2 border-double rounded-2xl border-gray-300 focus:outline-double focus:border-indigo-500"
+                                    type="" placeholder="Enter your password">
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember_me" name="remember_me" type="checkbox"
+                                        class="h-4 w-4 bg-blue-900 focus:ring-blue-900 border-gray-300 rounded-l-full">
+                                    <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <div class="text-sm">
+                                    <a href="#" class="text-indigo-400 hover:text-blue-500">
+                                        Forgot your password?
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="w-full flex justify-center bg-gradient-to-r from-indigo-500 to-blue-600  hover:bg-gradient-to-l hover:from-blue-500 hover:to-indigo-600 text-gray-100 p-4  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+                                    Sign in
+                                </button>
+                            </div>
+                            <p class="flex flex-col items-center justify-center mt-10 text-center text-md text-gray-500">
+                                <span>Don't have an account?</span>
+                                <a href="signup v2.html"
+                                    class="text-indigo-400 hover:text-blue-500 no-underline hover:underline cursor-pointer transition ease-in duration-300">Sign
+                                    up</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Footer-->
+      <footer class="bg-slate-900 py-24 pb-0 border-t">
+        <div class="justify-between">
+          <a href="/index.html">
+            <img class="h-[7rem] w-[7rem] -mt-24 ml-2" src="/assets/print with us.svg" alt="Logo" />
+          </a>
+        </div>
+        <div class="w-8/12 mx-auto">
+          <div class="flex justify-between flex-col lg:flex-row py-0 lg:py-12 gap-12 lg:gap-0">
+            <div>
+              <p
+                class="uppercase font-bold mb-2 text-gray-600 hover:text-white hover:cursor-pointer hover:scale-125 delay-150 duration-300 ease-in-out">
+                Visiting Cards
+              </p>
+              <ul>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">New Arrivals</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Most Popular</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Recommended</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Featured</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p
+                class="uppercase font-bold mb-2 text-gray-600 hover:text-white hover:cursor-pointer hover:scale-125 delay-150 duration-300 ease-in-out">
+                Others
+              </p>
+              <ul>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Offers</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Discounts</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Coupons</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p
+                class="uppercase font-bold mb-2 text-gray-600 hover:text-white hover:cursor-pointer hover:scale-125 delay-150 duration-300 ease-in-out">
+                Support
+              </p>
+              <ul>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Help</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Adress</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Feedback</a>
+                </li>
+                <li class="text-gray-500 hover:underline">
+                  <a href="#">Enquiry</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p
+                class="uppercase font-bold mb-2 text-gray-400 hover:text-white hover:cursor-pointer hover:scale-125 delay-150 duration-300 ease-in-out">
+                Follow Us
+              </p>
+              <div class="flex gap-2 justify-center">
+                <a href="#">
+                  <img src="/assets/icons/tr.png"
+                    class="h-8 w-8 hover:cursor-pointer hover:scale-150 delay-150 duration-300 ease-in-out" alt="" />
+                </a>
+                <a href="#">
+                  <img src="/assets/icons/fb.png"
+                    class="h-8 w-8 hover:cursor-pointer hover:scale-150 delay-150 duration-300 ease-in-out" alt="" />
+                </a>
+                <a href="#">
+                  <img src="/assets/icons/ig.png"
+                    class="h-8 w-8 hover:cursor-pointer hover:scale-150 delay-150 duration-300 ease-in-out" alt="" />
+                </a>
+                <a href="#">
+                  <img src="/assets/icons/tg.png"
+                    class="h-8 w-8 hover:cursor-pointer hover:scale-150 delay-150 duration-300 ease-in-out" alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t-2 m-4 ">
+            <button
+              class="bg-slate-300 rounded-lg my-5 mb-0 font-semibold font-sans p-1 px-8 justify-center hover:bg-green-300 hover:cursor-pointer hover:scale-125 delay-150 duration-300 ease-in-out">
+              <a href="#">Contact Us</a>
+            </button>
+          </div>
+          <div class="pt-12">
+            <p class="text-whites mb-2 text-2xl text-white font-semibold font-sans text-center">
+              2022 ©️ Print-With-Us. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+      <!--Footer-->
+    </div>
+</body>
+
+</html>
