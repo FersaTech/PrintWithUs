@@ -5,24 +5,18 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.authtoken.models import Token
 
 from accounts.models import User
-from .serializers import CategorySerializer, CouponSerializer, GallerySerializer, OrderListSerializer, ProductSerializer, OrderSerializer
-from .models import CategoryModel, Coupon, ProductModel, OrderModel, Gallery
+from .serializers import CouponSerializer, GallerySerializer, OrderListSerializer, ProductSerializer, OrderSerializer
+from .models import Coupon, ProductModel, OrderModel, Gallery
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
 # Create your views here.
 
-class CategoryAPIView(generics.ListAPIView):
-    queryset = CategoryModel.objects.all()
-    serializer_class = CategorySerializer
-
-
 class ProductAPIView(generics.ListAPIView):
     queryset = ProductModel.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filter_fields = ['category']
-    search_fields = ['@name', '@description', '@category__name']
+    search_fields = ['@name', '@description',]
 
 
 # View for Product Detail Listing
@@ -67,3 +61,8 @@ class CouponListAPIView(generics.ListAPIView):
 class GalleryAPIView(generics.ListAPIView):
     queryset = Gallery.objects.all()
     serializer_class = GallerySerializer
+
+
+class RecommendedAPIView(generics.ListAPIView):
+    queryset = ProductModel.objects.filter(feature_flag=True)
+    serializer_class = ProductSerializer

@@ -17,16 +17,6 @@ class Gallery(models.Model):
     class Meta:
         verbose_name_plural = 'Gallery'
 
-class CategoryModel(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    name = models.CharField(verbose_name='Name of Category: ', max_length=50)
-    
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        verbose_name_plural = "Categories"
-
 
 # Shape choice for the cards
 SHAPE_CHOICES = [
@@ -55,18 +45,19 @@ THICKNESS_CHOICES = [
 
 
 class ProductModel(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    name = models.CharField(max_length=50, verbose_name='Name of Product')
-    image1 = models.FileField(upload_to='product_images/', blank=False, default=None)
-    image2 = models.FileField(upload_to='product_images/', blank=True, default=None)
-    image3 = models.FileField(upload_to='product_images/', blank=True, default=None)
-    image4 = models.FileField(upload_to='product_images/', blank=True, default=None)
-    category = models.ForeignKey(CategoryModel, blank=True, null=True, related_name="catagories", on_delete=models.PROTECT)
-    shape = models.CharField(max_length=20, choices=SHAPE_CHOICES, default="rectangle")
-    finish = models.CharField(max_length=20, choices=FINSIH_CHOICES, default="matt")
-    quality = models.CharField(max_length=20, choices=QUALITY_CHOICES, default="premium")
-    thickness = models.CharField(max_length=20, choices=THICKNESS_CHOICES, default="250 GSM")
-    price = models.FloatField(default=0.0)
+    id =              models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    name =            models.CharField(max_length=50, verbose_name='Name of Product')
+    description =     models.TextField(null=True)
+    image1 =          models.FileField(upload_to='product_images/', blank=True, default=None)
+    image2 =          models.FileField(upload_to='product_images/', blank=True, default=None)
+    image3 =          models.FileField(upload_to='product_images/', blank=True, default=None)
+    image4 =          models.FileField(upload_to='product_images/', blank=True, default=None)
+    shape =           models.CharField(max_length=20, choices=SHAPE_CHOICES, default="rectangle")
+    finish =          models.CharField(max_length=20, choices=FINSIH_CHOICES, default="matt")
+    quality =         models.CharField(max_length=20, choices=QUALITY_CHOICES, default="premium")
+    thickness =       models.CharField(max_length=20, choices=THICKNESS_CHOICES, default="250 GSM")
+    price =           models.FloatField(default=0.0)
+    feature_flag =    models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
